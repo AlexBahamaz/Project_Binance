@@ -1,0 +1,38 @@
+{%extends 'base.html'%}
+{% block title %} Crypto Currency {% endblock %}
+{% block content %}
+<div class="jumbotron"> <!-- bootstrap component -->
+    <h1 class="display-4">Курс крипто валют</h1>
+    <p class="lead">Здесь выполняется запрос курса крипто валют с биржи Binance.com</p>
+    {% now "Данные обновлены по состоянию на дату d.m.Y и время H:i (время биржи)." %}
+    <hr class="my-4">
+    <p>Нажмите кнопку "Обновить" для получения свежих данных</p>
+    
+    <p class="lead">
+      <a class="btn btn-primary btn-lg"  role="button" onClick="window.location.href=window.location.href">Обновить</a>
+    </p>
+</div>
+    <div class="container">
+        <table class="table table-striped table-dark">
+            <thead>
+                <tr>
+                    <th scope="col">Наименование</th>
+                    <th scope="col">Стоимость</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if d %}
+                {% for i in d %}
+                <tr>
+                    <td class="align-middle"><a href='graph.html'>{{i.symbol}}</a></td>
+                    <td class="align-middle">{{i.price}}</td>
+                </tr>
+                {% endfor %}
+                {% else %}
+                <p>UPPPSSS!!!! Something get wrong!!! Check your internet connection!!!</p>
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+
+{% endblock %}
